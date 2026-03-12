@@ -1,0 +1,285 @@
+SQL> CREATE TABLE PERSONN (
+  2  PERSON_ID INT,
+  3  FNAME VARCHAR(20),
+  4  LNAME VARCHAR (20),
+  5  CITY VARCHAR(20),
+  6  SALARY INT
+  7  );
+
+Table created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> INSERT INTO PERSONN VALUES ('&PERSON_ID','&FNAME','&LNAME','&CITY','&SALARY');
+Enter value for person_id: 1
+Enter value for fname: SNEHA
+Enter value for lname: SHETH
+Enter value for city: RAJKOT
+Enter value for salary: 10,000
+old   1: INSERT INTO PERSONN VALUES ('&PERSON_ID','&FNAME','&LNAME','&CITY','&SALARY')
+new   1: INSERT INTO PERSONN VALUES ('1','SNEHA','SHETH','RAJKOT','10,000')
+INSERT INTO PERSONN VALUES ('1','SNEHA','SHETH','RAJKOT','10,000')
+                                                         *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> INSERT INTO PERSONN VALUES ('&PERSON_ID','&FNAME','&LNAME','&CITY','&SALARY');
+Enter value for person_id: 1
+Enter value for fname: SNEHA
+Enter value for lname: SHETH
+Enter value for city: RAJKOT
+Enter value for salary: 10000
+old   1: INSERT INTO PERSONN VALUES ('&PERSON_ID','&FNAME','&LNAME','&CITY','&SALARY')
+new   1: INSERT INTO PERSONN VALUES ('1','SNEHA','SHETH','RAJKOT','10000')
+
+1 row created.
+
+SQL> INSERT INTO PERSONN VALUES ('&PERSON_ID','&FNAME','&LNAME','&CITY','&SALARY');
+Enter value for person_id: 2
+Enter value for fname: PUJA
+Enter value for lname: PARMAR
+Enter value for city: AHEMDABAD
+Enter value for salary: 2000
+old   1: INSERT INTO PERSONN VALUES ('&PERSON_ID','&FNAME','&LNAME','&CITY','&SALARY')
+new   1: INSERT INTO PERSONN VALUES ('2','PUJA','PARMAR','AHEMDABAD','2000')
+
+1 row created.
+
+SQL> INSERT INTO PERSONN VALUES ('&PERSON_ID','&FNAME','&LNAME','&CITY','&SALARY');
+Enter value for person_id: 3
+Enter value for fname: RIYA
+Enter value for lname: GAJAR
+Enter value for city: PUNE
+Enter value for salary: 8000
+old   1: INSERT INTO PERSONN VALUES ('&PERSON_ID','&FNAME','&LNAME','&CITY','&SALARY')
+new   1: INSERT INTO PERSONN VALUES ('3','RIYA','GAJAR','PUNE','8000')
+
+1 row created.
+
+SQL> INSERT INTO PERSONN VALUES ('&PERSON_ID','&FNAME','&LNAME','&CITY','&SALARY');
+Enter value for person_id: 4
+Enter value for fname: SANDIP
+Enter value for lname: JADEJA
+Enter value for city: PUNE
+Enter value for salary: 5000
+old   1: INSERT INTO PERSONN VALUES ('&PERSON_ID','&FNAME','&LNAME','&CITY','&SALARY')
+new   1: INSERT INTO PERSONN VALUES ('4','SANDIP','JADEJA','PUNE','5000')
+
+1 row created.
+
+SQL> INSERT INTO PERSONN VALUES ('&PERSON_ID','&FNAME','&LNAME','&CITY','&SALARY');
+Enter value for person_id: 5
+Enter value for fname: ALPESH
+Enter value for lname: PRAJAPATI
+Enter value for city: MUMBAI
+Enter value for salary: 20000
+old   1: INSERT INTO PERSONN VALUES ('&PERSON_ID','&FNAME','&LNAME','&CITY','&SALARY')
+new   1: INSERT INTO PERSONN VALUES ('5','ALPESH','PRAJAPATI','MUMBAI','20000')
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT PERSON_ID,FNAME FROM PERSON;
+SELECT PERSON_ID,FNAME FROM PERSON
+                 *
+ERROR at line 1:
+ORA-00904: "FNAME": invalid identifier 
+
+
+SQL> SELECT PERSON_ID, FNAME FROM PERSONN;
+
+ PERSON_ID FNAME                                                                
+---------- --------------------                                                 
+         1 SNEHA                                                                
+         2 PUJA                                                                 
+         3 RIYA                                                                 
+         4 SANDIP                                                               
+         5 ALPESH                                                               
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM PERSONN;
+
+ PERSON_ID FNAME                LNAME                CITY                       
+---------- -------------------- -------------------- --------------------       
+    SALARY                                                                      
+----------                                                                      
+         1 SNEHA                SHETH                RAJKOT                     
+     10000                                                                      
+                                                                                
+         2 PUJA                 PARMAR               AHEMDABAD                  
+      2000                                                                      
+                                                                                
+         3 RIYA                 GAJAR                PUNE                       
+      8000                                                                      
+                                                                                
+
+ PERSON_ID FNAME                LNAME                CITY                       
+---------- -------------------- -------------------- --------------------       
+    SALARY                                                                      
+----------                                                                      
+         4 SANDIP               JADEJA               PUNE                       
+      5000                                                                      
+                                                                                
+         5 ALPESH               PRAJAPATI            MUMBAI                     
+     20000                                                                      
+                                                                                
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM PERSONN ORDER BY SALARY;
+
+ PERSON_ID FNAME                LNAME                CITY                       
+---------- -------------------- -------------------- --------------------       
+    SALARY                                                                      
+----------                                                                      
+         2 PUJA                 PARMAR               AHEMDABAD                  
+      2000                                                                      
+                                                                                
+         4 SANDIP               JADEJA               PUNE                       
+      5000                                                                      
+                                                                                
+         3 RIYA                 GAJAR                PUNE                       
+      8000                                                                      
+                                                                                
+
+ PERSON_ID FNAME                LNAME                CITY                       
+---------- -------------------- -------------------- --------------------       
+    SALARY                                                                      
+----------                                                                      
+         1 SNEHA                SHETH                RAJKOT                     
+     10000                                                                      
+                                                                                
+         5 ALPESH               PRAJAPATI            MUMBAI                     
+     20000                                                                      
+                                                                                
+
+SQL> SELECT DISTINCT CITY FROM PERSONN;
+
+CITY                                                                            
+--------------------                                                            
+RAJKOT                                                                          
+AHEMDABAD                                                                       
+MUMBAI                                                                          
+PUNE                                                                            
+
+SQL> UPDATE PERSONN SET CITY='KOLKATA' WHERE FNAME='SANDIP';
+
+1 row updated.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT
+  2  * FROM PERSONN WHERE LNAME='PRAJAPPATI';
+
+no rows selected
+
+SQL> SELECT * FROM WHERE LNAME='PRAJAPATI';
+SELECT * FROM WHERE LNAME='PRAJAPATI'
+              *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> SELECT * FROM PERSONN WHERE LNAME='PRAJAPATI';
+
+ PERSON_ID FNAME                LNAME                CITY                       
+---------- -------------------- -------------------- --------------------       
+    SALARY                                                                      
+----------                                                                      
+         5 ALPESH               PRAJAPATI            MUMBAI                     
+     20000                                                                      
+                                                                                
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> ALTER TABLE PERSONN ADD
+  2  (
+  3  STATE VARCHAR(20),
+  4  BIRTHDATE DATE,
+  5  PINCODE INT
+  6  );
+
+Table altered.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM PERSONN WHERE SALARY > 6000;
+
+ PERSON_ID FNAME                LNAME                CITY                       
+---------- -------------------- -------------------- --------------------       
+    SALARY STATE                BIRTHDATE    PINCODE                            
+---------- -------------------- --------- ----------                            
+         1 SNEHA                SHETH                RAJKOT                     
+     10000                                                                      
+                                                                                
+         3 RIYA                 GAJAR                PUNE                       
+      8000                                                                      
+                                                                                
+         5 ALPESH               PRAJAPATI            MUMBAI                     
+     20000                                                                      
+                                                                                
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> DELETE FROM PERSON WHERE SALARY < 3000;
+DELETE FROM PERSON WHERE SALARY < 3000
+                         *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier 
+
+
+SQL> DELETE FROM PERSON WHERE SALARY<3000;
+DELETE FROM PERSON WHERE SALARY<3000
+                         *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier 
+
+
+SQL> DESC PERSONN;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ PERSON_ID                                          NUMBER(38)
+ FNAME                                              VARCHAR2(20)
+ LNAME                                              VARCHAR2(20)
+ CITY                                               VARCHAR2(20)
+ SALARY                                             NUMBER(38)
+ STATE                                              VARCHAR2(20)
+ BIRTHDATE                                          DATE
+ PINCODE                                            NUMBER(38)
+
+SQL> DELETE FROM PERSONN WHERE SALARY < 3000;
+
+1 row deleted.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> RENAME PERSONN TO PERSON_MASTER;
+
+Table renamed.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SPOOL OFF;
