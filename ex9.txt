@@ -1,0 +1,169 @@
+SQL> SELECT CNAME
+  2  FROM DEPOSIT
+  3  WHERE BNAME = (
+  4      SELECT BNAME
+  5      FROM DEPOSIT
+  6      WHERE CNAME = 'SUNIL'
+  7  );
+
+CNAME                                                                           
+---------------                                                                 
+SUNIL                                                                           
+
+SQL> SELECT *
+  2  FROM DEPOSIT D, BORROW B
+  3  WHERE D.CNAME = B.CNAME
+  4  AND D.BNAME IN (
+  5      SELECT BNAME
+  6      FROM DEPOSIT
+  7      WHERE CNAME = 'PRAMOD'
+  8  );
+
+no rows selected
+
+SQL> SELECT EMP_NO, EMP_NAME
+  2  FROM EMPLOYEE
+  3  WHERE EMP_SAL > (SELECT AVG(EMP_SAL) FROM EMPLOYEE)
+  4  ORDER BY EMP_SAL ASC;
+
+    EMP_NO EMP_NAME                                                             
+---------- --------------------                                                 
+       106 SNEHA                                                                
+       107 ANAMIKA                                                              
+       104 AMAN                                                                 
+       105 ANITA                                                                
+
+SQL> SELECT EMP_NAME, EMP_SAL
+  2  FROM EMPLOYEE
+  3  WHERE MANAGER_ID = (
+  4      SELECT EMP_NO
+  5      FROM EMPLOYEE
+  6      WHERE EMP_NAME = 'FORD'
+  7  );
+WHERE MANAGER_ID = (
+      *
+ERROR at line 3:
+ORA-00904: "MANAGER_ID": invalid identifier 
+
+
+SQL> SELECT E.DEPT_NO, E.EMP_NAME, J.JOB_NAME
+  2  FROM EMPLOYEE E, JOB J
+  3  WHERE E.DEPT_NO = J.DEPT_NO
+  4  AND J.JOB_NAME = 'ACCOUNT';
+WHERE E.DEPT_NO = J.DEPT_NO
+                  *
+ERROR at line 3:
+ORA-00904: "J"."DEPT_NO": invalid identifier 
+
+
+SQL> SELECT EMP_NAME, EMP_SAL
+  2  FROM EMPLOYEE
+  3  WHERE EMP_NAME = 'FORD';
+
+no rows selected
+
+SQL> SELECT EMP_NAME, DEPT_NO
+  2  FROM EMPLOYEE
+  3  WHERE DEPT_NO = 10;
+
+EMP_NAME                DEPT_NO                                                 
+-------------------- ----------                                                 
+SMITH                        10                                                 
+AMAN                         10                                                 
+ANITA                        10                                                 
+SNEHA                        10                                                 
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT CNAME
+  2  FROM DEPOSIT
+  3  WHERE CNAME IN (SELECT CNAME FROM BORROW)
+  4  AND BNAME IN (
+  5      SELECT BNAME
+  6      FROM BRANCH
+  7      WHERE CITY = 'NAGPUR'
+  8  );
+
+CNAME                                                                           
+---------------                                                                 
+ANIL                                                                            
+SUNIL                                                                           
+
+SQL> SELECT C.CNAME, B.CITY
+  2  FROM CUSTOMERS C, BRANCH B
+  3  WHERE C.CITY = B.CITY;
+
+CNAME           CITY                                                            
+--------------- ---------------                                                 
+PRAMOD          NAGPUR                                                          
+MADHURI         NAGPUR                                                          
+PRAMOD          NAGPUR                                                          
+MADHURI         NAGPUR                                                          
+SUNIL           DELHI                                                           
+SUNIL           DELHI                                                           
+PRAMOD          NAGPUR                                                          
+MADHURI         NAGPUR                                                          
+SHIVANI         BOMBAY                                                          
+SHIVANI         BOMBAY                                                          
+
+10 rows selected.
+
+SQL> SELECT E.EMP_NAME, E.DEPT_NO, D.DEPT_NAME
+  2  FROM EMPLOYEE E, DEPT D
+  3  WHERE E.DEPT_NO = D.DEPT_NO;
+FROM EMPLOYEE E, DEPT D
+                 *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT EMP_NAME, DEPT_NO
+  2  FROM EMPLOYEE;
+
+EMP_NAME                DEPT_NO                                                 
+-------------------- ----------                                                 
+SMITH                        10                                                 
+SNEHAL                       25                                                 
+NEWNAME                      20                                                 
+AMAN                         10                                                 
+ANITA                        10                                                 
+SNEHA                        10                                                 
+ANAMIKA                      30                                                 
+
+7 rows selected.
+
+SQL> SELECT DISTINCT JOB_NAME
+  2  FROM JOB
+  3  WHERE JOB_ID IN (
+  4      SELECT JOB_ID
+  5      FROM EMPLOYEE
+  6      WHERE DEPT_NO = 30
+  7  );
+
+JOB_NAME                                                                        
+------------------------------                                                  
+ACCOUNT                                                                         
+LECTURER                                                                        
+COMPUTER OPERATOR                                                               
+MARKETING MANAGER                                                               
+PROGRAMMER                                                                      
+FINANCE MANAGER                                                                 
+
+6 rows selected.
+
+SQL> SELECT CNAME
+  2  FROM CUSTOMERS
+  3  WHERE CITY = 'CALCUTTA';
+
+CNAME                                                                           
+---------------                                                                 
+ANIL                                                                            
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SPOOL OFF;
