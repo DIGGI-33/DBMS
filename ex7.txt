@@ -1,0 +1,187 @@
+SQL> SELECT * FROM EMPLOYEE;
+
+    EMP_NO EMP_NAME                EMP_SAL   EMP_COMM    DEPT_NO                
+---------- -------------------- ---------- ---------- ----------                
+       101 SMITH                       800                    20                
+       102 SNEHAL                     1600        300         25                
+       103 ADAMA                      1100          0         20                
+       104 AMAN                       3000                    15                
+       105 ANITA                      5000       5000         10                
+       106 SNEHA                      2450       2450         10                
+       107 ANAMIKA                    2975                    30                
+
+7 rows selected.
+
+SQL> SELECT * FROM EMPLOYEE WHERE EMP_NAME LIKE '__A%';
+
+    EMP_NO EMP_NAME                EMP_SAL   EMP_COMM    DEPT_NO                
+---------- -------------------- ---------- ---------- ----------                
+       103 ADAMA                      1100          0         20                
+       104 AMAN                       3000                    15                
+       107 ANAMIKA                    2975                    30                
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT A_NO, AMOUNT FROM DEPOSITT WHERE DATE BETWEEN '01-JAN-06' AND '25-JUL-06';
+SELECT A_NO, AMOUNT FROM DEPOSITT WHERE DATE BETWEEN '01-JAN-06' AND '25-JUL-06'
+                                        *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT A_NO, AMOUNT
+  2  FROM DEPOSITT
+  3  WHERE DATE BETWEEN '01-JAN-06' AND '25-JUL-06';
+WHERE DATE BETWEEN '01-JAN-06' AND '25-JUL-06'
+      *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> SELECT A_NO, AMOUNT
+  2  FROM DEPOSITT
+  3  WHERE "DATE" BETWEEN TO_DATE('01-JAN-06','DD-MON-RR')
+  4                   AND TO_DATE('25-JUL-06','DD-MON-RR');
+WHERE "DATE" BETWEEN TO_DATE('01-JAN-06','DD-MON-RR')
+      *
+ERROR at line 3:
+ORA-00904: "DATE": invalid identifier 
+
+
+SQL> SELECT A_NO, AMOUNT
+  2  FROM DEPOSITT
+  3  WHERE D_DATE BETWEEN TO_DATE('01-JAN-06','DD-MON-RR')
+  4                   AND TO_DATE('25-JUL-06','DD-MON-RR');
+
+      A_NO     AMOUNT                                                           
+---------- ----------                                                           
+       101       7000                                                           
+       102       5000                                                           
+       103       6500                                                           
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT *
+  2  FROM JOB
+  3  WHERE MIN_SAL > 4000;
+
+JOB_ID               JOB_NAME                          MIN_SAL    MAX_SAL       
+-------------------- ------------------------------ ---------- ----------       
+MK_MGR               MARKETING MANAGER                    9000      15000       
+FI_MGR               FINANCE MANAGER                      8200      12000       
+FI_ACC               ACCOUNT                              4200       9000       
+LEC                  LECTURER                             6000      17000       
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT EMP_NAME AS NAME, EMP_SAL
+  2  FROM EMPLOYEE
+  3  WHERE DEPT_NO = 20;
+
+NAME                    EMP_SAL                                                 
+-------------------- ----------                                                 
+SMITH                       800                                                 
+ADAMA                      1100                                                 
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT EMP_NO, EMP_NAME, DEPT_NO
+  2  FROM EMPLOYEE
+  3  WHERE DEPT_NO IN (10, 20);
+
+    EMP_NO EMP_NAME                DEPT_NO                                      
+---------- -------------------- ----------                                      
+       101 SMITH                        20                                      
+       103 ADAMA                        20                                      
+       105 ANITA                        10                                      
+       106 SNEHA                        10                                      
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT *
+  2  FROM EMPLOYEE
+  3  WHERE EMP_NAME LIKE 'A%';
+
+    EMP_NO EMP_NAME                EMP_SAL   EMP_COMM    DEPT_NO                
+---------- -------------------- ---------- ---------- ----------                
+       103 ADAMA                      1100          0         20                
+       104 AMAN                       3000                    15                
+       105 ANITA                      5000       5000         10                
+       107 ANAMIKA                    2975                    30                
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 
+SQL> SELECT *
+  2  FROM EMPLOYEE
+  3  WHERE EMP_NAME LIKE '__A%';
+
+    EMP_NO EMP_NAME                EMP_SAL   EMP_COMM    DEPT_NO                
+---------- -------------------- ---------- ---------- ----------                
+       103 ADAMA                      1100          0         20                
+       104 AMAN                       3000                    15                
+       107 ANAMIKA                    2975                    30                
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT *
+  2  FROM EMPLOYEE
+  3  WHERE EMP_NAME LIKE 'A_A%';
+
+    EMP_NO EMP_NAME                EMP_SAL   EMP_COMM    DEPT_NO                
+---------- -------------------- ---------- ---------- ----------                
+       103 ADAMA                      1100          0         20                
+       104 AMAN                       3000                    15                
+       107 ANAMIKA                    2975                    30                
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT EMP_NAME, EMP_NO, EMP_SAL
+  2  FROM EMPLOYEE
+  3  WHERE EMP_NAME LIKE 'ANI__';
+
+EMP_NAME                 EMP_NO    EMP_SAL                                      
+-------------------- ---------- ----------                                      
+ANITA                       105       5000                                      
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT CNAME
+  2  FROM DEPOSITT
+  3  ORDER BY CNAME;
+
+CNAME                                                                           
+--------------------                                                            
+ANIL                                                                            
+JAY                                                                             
+KEYUR                                                                           
+MAYUR                                                                           
+SUNIL                                                                           
+VIJAY                                                                           
+
+6 rows selected.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SPOOL OFF
