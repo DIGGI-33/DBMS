@@ -1,0 +1,443 @@
+SQL> CREATE TABLE JOB (
+  2  JOB_ID VARCHAR2(20),
+  3  JOB_NAME VARCHAR2(30),
+  4  MIN_SAL NUMBER,
+  5  MAX_SAL NUMBER
+  6  );
+
+Table created.
+
+SQL> APPEND;
+SP2-0004: Nothing to append.
+SQL> INSERT INTO JOB VALUES ('&JOB_ID','&JOB_NAME','&MIN_SAL','&MAX_SAL');
+Enter value for job_id: IT_PROG
+Enter value for job_name: PROGRAMMER
+Enter value for min_sal: 4000
+Enter value for max_sal: 10000
+old   1: INSERT INTO JOB VALUES ('&JOB_ID','&JOB_NAME','&MIN_SAL','&MAX_SAL')
+new   1: INSERT INTO JOB VALUES ('IT_PROG','PROGRAMMER','4000','10000')
+
+1 row created.
+
+SQL> INSERT INTO JOB VALUES ('&JOB_ID','&JOB_NAME','&MIN_SAL','&MAX_SAL');
+Enter value for job_id: MK_MGR
+Enter value for job_name: MARKETING MANAGER
+Enter value for min_sal: 9000
+Enter value for max_sal: 15000
+old   1: INSERT INTO JOB VALUES ('&JOB_ID','&JOB_NAME','&MIN_SAL','&MAX_SAL')
+new   1: INSERT INTO JOB VALUES ('MK_MGR','MARKETING MANAGER','9000','15000')
+
+1 row created.
+
+SQL> INSERT INTO JOB VALUES ('&JOB_ID','&JOB_NAME','&MIN_SAL','&MAX_SAL');
+Enter value for job_id: FI_MGR
+Enter value for job_name: FINANCE MANAGER
+Enter value for min_sal: 8200
+Enter value for max_sal: 12000
+old   1: INSERT INTO JOB VALUES ('&JOB_ID','&JOB_NAME','&MIN_SAL','&MAX_SAL')
+new   1: INSERT INTO JOB VALUES ('FI_MGR','FINANCE MANAGER','8200','12000')
+
+1 row created.
+
+SQL> INSERT INTO JOB VALUES ('&JOB_ID','&JOB_NAME','&MIN_SAL','&MAX_SAL');
+Enter value for job_id: FI_ACC
+Enter value for job_name: ACCOUNT
+Enter value for min_sal: 4200
+Enter value for max_sal: 9000
+old   1: INSERT INTO JOB VALUES ('&JOB_ID','&JOB_NAME','&MIN_SAL','&MAX_SAL')
+new   1: INSERT INTO JOB VALUES ('FI_ACC','ACCOUNT','4200','9000')
+
+1 row created.
+
+SQL> INSERT INTO JOB VALUES ('&JOB_ID','&JOB_NAME','&MIN_SAL','&MAX_SAL');
+Enter value for job_id: LEC
+Enter value for job_name: LECTURER
+Enter value for min_sal: 6000
+Enter value for max_sal: 17000
+old   1: INSERT INTO JOB VALUES ('&JOB_ID','&JOB_NAME','&MIN_SAL','&MAX_SAL')
+new   1: INSERT INTO JOB VALUES ('LEC','LECTURER','6000','17000')
+
+1 row created.
+
+SQL> INSERT INTO JOB VALUES ('&JOB_ID','&JOB_NAME','&MIN_SAL','&MAX_SAL');
+Enter value for job_id: COMP_OP
+Enter value for job_name: COMPUTER OPERATOR
+Enter value for min_sal: 1500
+Enter value for max_sal: 3000
+old   1: INSERT INTO JOB VALUES ('&JOB_ID','&JOB_NAME','&MIN_SAL','&MAX_SAL')
+new   1: INSERT INTO JOB VALUES ('COMP_OP','COMPUTER OPERATOR','1500','3000')
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM JOB;
+
+JOB_ID               JOB_NAME                          MIN_SAL    MAX_SAL       
+-------------------- ------------------------------ ---------- ----------       
+IT_PROG              PROGRAMMER                           4000      10000       
+MK_MGR               MARKETING MANAGER                    9000      15000       
+FI_MGR               FINANCE MANAGER                      8200      12000       
+FI_ACC               ACCOUNT                              4200       9000       
+LEC                  LECTURER                             6000      17000       
+COMP_OP              COMPUTER OPERATOR                    1500       3000       
+
+6 rows selected.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> CREATE TABLE EMPLOYEE (
+  2  EMP_NO NUMBER,
+  3  EMP_NAME VARCHAR2(20),
+  4  EMP_SAL NUMBER,
+  5  EMP_COMM NUMBER,
+  6  DEPT_NO NUMBER
+  7  );
+
+Table created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> INSERT VALUES INTO EMPLOYEE ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO');
+Enter value for emp_no: 101
+Enter value for emp_name: SMITH
+Enter value for emp_sal: 800
+Enter value for emp_comm: 
+Enter value for dept_no: 20
+old   1: INSERT VALUES INTO EMPLOYEE ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO')
+new   1: INSERT VALUES INTO EMPLOYEE ('101','SMITH','800','','20')
+INSERT VALUES INTO EMPLOYEE ('101','SMITH','800','','20')
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword 
+
+
+SQL> INSERT VALUES INTO EMPLOYEE ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO');
+Enter value for emp_no: 101
+Enter value for emp_name: SMITH
+Enter value for emp_sal: 800
+Enter value for emp_comm:  
+Enter value for dept_no: 20
+old   1: INSERT VALUES INTO EMPLOYEE ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO')
+new   1: INSERT VALUES INTO EMPLOYEE ('101','SMITH','800',' ','20')
+INSERT VALUES INTO EMPLOYEE ('101','SMITH','800',' ','20')
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword 
+
+
+SQL> INSERT VALUES INTO EMPLOYEE ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO');
+Enter value for emp_no: 101
+Enter value for emp_name: SMITH
+Enter value for emp_sal: 800
+Enter value for emp_comm: NULL
+Enter value for dept_no: 20
+old   1: INSERT VALUES INTO EMPLOYEE ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO')
+new   1: INSERT VALUES INTO EMPLOYEE ('101','SMITH','800','NULL','20')
+INSERT VALUES INTO EMPLOYEE ('101','SMITH','800','NULL','20')
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword 
+
+
+SQL> INSERT VALUES INTO EMPLOYEE ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO');
+Enter value for emp_no: 101
+Enter value for emp_name: SMITH
+Enter value for emp_sal: 800
+Enter value for emp_comm: ''
+Enter value for dept_no: 20
+old   1: INSERT VALUES INTO EMPLOYEE ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO')
+new   1: INSERT VALUES INTO EMPLOYEE ('101','SMITH','800','''','20')
+INSERT VALUES INTO EMPLOYEE ('101','SMITH','800','''','20')
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword 
+
+
+SQL> INSERT VALUES INTO EMPLOYEE ('101','SMITH','800','','20');
+INSERT VALUES INTO EMPLOYEE ('101','SMITH','800','','20')
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword 
+
+
+SQL> INSERT INTO VALUES EMPLOYEE ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO');
+Enter value for emp_no: 101
+Enter value for emp_name: SMITH
+Enter value for emp_sal: 800
+Enter value for emp_comm:  
+Enter value for dept_no: 20
+old   1: INSERT INTO VALUES EMPLOYEE ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO')
+new   1: INSERT INTO VALUES EMPLOYEE ('101','SMITH','800',' ','20')
+INSERT INTO VALUES EMPLOYEE ('101','SMITH','800',' ','20')
+            *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> INSERT INTO EMPLOYEE VALUES ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO');
+Enter value for emp_no: 101
+Enter value for emp_name: SMITH
+Enter value for emp_sal: 800
+Enter value for emp_comm:  
+Enter value for dept_no: 20
+old   1: INSERT INTO EMPLOYEE VALUES ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO')
+new   1: INSERT INTO EMPLOYEE VALUES ('101','SMITH','800',' ','20')
+INSERT INTO EMPLOYEE VALUES ('101','SMITH','800',' ','20')
+                                                 *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> INSERT INTO EMPLOYEE VALUES ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO');
+Enter value for emp_no: 101
+Enter value for emp_name: SMITH
+Enter value for emp_sal: 800
+Enter value for emp_comm: 
+Enter value for dept_no: 20
+old   1: INSERT INTO EMPLOYEE VALUES ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO')
+new   1: INSERT INTO EMPLOYEE VALUES ('101','SMITH','800','','20')
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO');
+Enter value for emp_no: 102
+Enter value for emp_name: SNEHAL
+Enter value for emp_sal: 1600
+Enter value for emp_comm: 300
+Enter value for dept_no: 25
+old   1: INSERT INTO EMPLOYEE VALUES ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO')
+new   1: INSERT INTO EMPLOYEE VALUES ('102','SNEHAL','1600','300','25')
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO');
+Enter value for emp_no: 103
+Enter value for emp_name: ADAMA
+Enter value for emp_sal: 1100
+Enter value for emp_comm: 0
+Enter value for dept_no: 20
+old   1: INSERT INTO EMPLOYEE VALUES ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO')
+new   1: INSERT INTO EMPLOYEE VALUES ('103','ADAMA','1100','0','20')
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO');
+Enter value for emp_no: 104
+Enter value for emp_name: AMAN
+Enter value for emp_sal: 3000
+Enter value for emp_comm: 
+Enter value for dept_no: 15
+old   1: INSERT INTO EMPLOYEE VALUES ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO')
+new   1: INSERT INTO EMPLOYEE VALUES ('104','AMAN','3000','','15')
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO');
+Enter value for emp_no: 105
+Enter value for emp_name: ANITA
+Enter value for emp_sal: 5000
+Enter value for emp_comm: 5000
+Enter value for dept_no: 10
+old   1: INSERT INTO EMPLOYEE VALUES ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO')
+new   1: INSERT INTO EMPLOYEE VALUES ('105','ANITA','5000','5000','10')
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO');
+Enter value for emp_no: 106
+Enter value for emp_name: SNEHA
+Enter value for emp_sal: 2450
+Enter value for emp_comm: 2450
+Enter value for dept_no: 10
+old   1: INSERT INTO EMPLOYEE VALUES ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO')
+new   1: INSERT INTO EMPLOYEE VALUES ('106','SNEHA','2450','2450','10')
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO');
+Enter value for emp_no: 107
+Enter value for emp_name: ANAMIKA
+Enter value for emp_sal: 2975
+Enter value for emp_comm: 
+Enter value for dept_no: 30
+old   1: INSERT INTO EMPLOYEE VALUES ('&EMP_NO','&EMP_NAME','&EMP_SAL','&EMP_COMM','&DEPT_NO')
+new   1: INSERT INTO EMPLOYEE VALUES ('107','ANAMIKA','2975','','30')
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM EMPLOYEE;
+
+    EMP_NO EMP_NAME                EMP_SAL   EMP_COMM    DEPT_NO                
+---------- -------------------- ---------- ---------- ----------                
+       101 SMITH                       800                    20                
+       102 SNEHAL                     1600        300         25                
+       103 ADAMA                      1100          0         20                
+       104 AMAN                       3000                    15                
+       105 ANITA                      5000       5000         10                
+       106 SNEHA                      2450       2450         10                
+       107 ANAMIKA                    2975                    30                
+
+7 rows selected.
+
+SQL> CREATE TABLE DEPOSIT (
+  2  A_NO NUMBER,
+  3  CNAME VARCHAR2(20),
+  4  BNAME VARCHAR2(30),
+  5  AMOUNT NUMBER,
+  6  DATE DATE
+  7  );
+DATE DATE
+*
+ERROR at line 6:
+ORA-00904: : invalid identifier 
+
+
+SQL> CREATE TABLE DEPOSIT (
+  2  A_NO NUMBER,
+  3  CNAME VARCHAR2(20),
+  4  BNAME VARCHAR2(30),
+  5  AMOUNT NUMBER,
+  6  D_DATE DATE
+  7  );
+CREATE TABLE DEPOSIT (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> CREATE TABLE DEPOSITT (
+  2  A_NO NUMBER,
+  3  CNAME VARCHAR2(20),
+  4  BNAME VARCHAR2(30),
+  5  AMOUNT NUMBER,
+  6  D_DATE DATE
+  7  );
+
+Table created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> INSERT INTO DEPOSITT VALUES ('&A_NO','&CNAME','&BNAME','&AMOUNT','&D_DATE');
+Enter value for a_no: 101
+Enter value for cname: ANIL
+Enter value for bname: ANDHERI
+Enter value for amount: 7000
+Enter value for d_date: 01-JAN-06
+old   1: INSERT INTO DEPOSITT VALUES ('&A_NO','&CNAME','&BNAME','&AMOUNT','&D_DATE')
+new   1: INSERT INTO DEPOSITT VALUES ('101','ANIL','ANDHERI','7000','01-JAN-06')
+
+1 row created.
+
+SQL> INSERT INTO DEPOSITT VALUES ('&A_NO','&CNAME','&BNAME','&AMOUNT','&D_DATE');
+Enter value for a_no: 102
+Enter value for cname: SUNIL
+Enter value for bname: VIRAR
+Enter value for amount: 5000
+Enter value for d_date: 15-JUL-06
+old   1: INSERT INTO DEPOSITT VALUES ('&A_NO','&CNAME','&BNAME','&AMOUNT','&D_DATE')
+new   1: INSERT INTO DEPOSITT VALUES ('102','SUNIL','VIRAR','5000','15-JUL-06')
+
+1 row created.
+
+SQL> INSERT INTO DEPOSITT VALUES ('&A_NO','&CNAME','&BNAME','&AMOUNT','&D_DATE');
+Enter value for a_no: 103
+Enter value for cname: JAY
+Enter value for bname: VILLEPARLE
+Enter value for amount: 6500
+Enter value for d_date: 12-MAR-06
+old   1: INSERT INTO DEPOSITT VALUES ('&A_NO','&CNAME','&BNAME','&AMOUNT','&D_DATE')
+new   1: INSERT INTO DEPOSITT VALUES ('103','JAY','VILLEPARLE','6500','12-MAR-06')
+
+1 row created.
+
+SQL> INSERT INTO DEPOSITT VALUES ('&A_NO','&CNAME','&BNAME','&AMOUNT','&D_DATE');
+Enter value for a_no: 104
+Enter value for cname: VIJAY
+Enter value for bname: ANDHERI
+Enter value for amount: 8000
+Enter value for d_date: 17-SEP-06
+old   1: INSERT INTO DEPOSITT VALUES ('&A_NO','&CNAME','&BNAME','&AMOUNT','&D_DATE')
+new   1: INSERT INTO DEPOSITT VALUES ('104','VIJAY','ANDHERI','8000','17-SEP-06')
+
+1 row created.
+
+SQL> INSERT INTO DEPOSITT VALUES ('&A_NO','&CNAME','&BNAME','&AMOUNT','&D_DATE');
+Enter value for a_no: 105
+Enter value for cname: KEYUR
+Enter value for bname: DADAR
+Enter value for amount: 7500
+Enter value for d_date: 17-NOV-06
+old   1: INSERT INTO DEPOSITT VALUES ('&A_NO','&CNAME','&BNAME','&AMOUNT','&D_DATE')
+new   1: INSERT INTO DEPOSITT VALUES ('105','KEYUR','DADAR','7500','17-NOV-06')
+
+1 row created.
+
+SQL> INSERT INTO DEPOSITT VALUES ('&A_NO','&CNAME','&BNAME','&AMOUNT','&D_DATE');
+Enter value for a_no: 106
+Enter value for cname: MAYUR
+Enter value for bname: BORIVALI
+Enter value for amount: 5500
+Enter value for d_date: 21-DEC-06
+old   1: INSERT INTO DEPOSITT VALUES ('&A_NO','&CNAME','&BNAME','&AMOUNT','&D_DATE')
+new   1: INSERT INTO DEPOSITT VALUES ('106','MAYUR','BORIVALI','5500','21-DEC-06')
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM DEPOSITT;
+
+      A_NO CNAME                BNAME                              AMOUNT       
+---------- -------------------- ------------------------------ ----------       
+D_DATE                                                                          
+---------                                                                       
+       101 ANIL                 ANDHERI                              7000       
+01-JAN-06                                                                       
+                                                                                
+       102 SUNIL                VIRAR                                5000       
+15-JUL-06                                                                       
+                                                                                
+       103 JAY                  VILLEPARLE                           6500       
+12-MAR-06                                                                       
+                                                                                
+
+      A_NO CNAME                BNAME                              AMOUNT       
+---------- -------------------- ------------------------------ ----------       
+D_DATE                                                                          
+---------                                                                       
+       104 VIJAY                ANDHERI                              8000       
+17-SEP-06                                                                       
+                                                                                
+       105 KEYUR                DADAR                                7500       
+17-NOV-06                                                                       
+                                                                                
+       106 MAYUR                BORIVALI                             5500       
+21-DEC-06                                                                       
+                                                                                
+
+6 rows selected.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SPOLL OFF;
+SP2-0042: unknown command "SPOLL OFF" - rest of line ignored.
+SQL> SPOLL OFF
+SP2-0042: unknown command "SPOLL OFF" - rest of line ignored.
+SQL> SPOOL OFF;
